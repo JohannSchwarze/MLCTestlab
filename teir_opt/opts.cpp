@@ -64,6 +64,48 @@ void abcd_ebf_aefcd_v1(float const* in0, float const* in1, float* out) {
     }
 }
 
+void abcd_ebf_aefcd_v1_lowered(float const* in0, float const* in1, float* out) {
+    uint64_t const da = 8;
+    uint64_t const db = 64;
+    uint64_t const dc = 24;
+    uint64_t const dd = 4;
+    uint64_t const de = 12;
+    uint64_t const df = 256;
+
+    uint64_t const in0_sd = 1;
+    uint64_t const in0_sc = in0_sd * dd;
+    uint64_t const in0_sb = in0_sc * dc;
+    uint64_t const in0_sa = in0_sb * db;
+    uint64_t const in0_se = 0;
+    uint64_t const in0_sf = 0;
+
+    uint64_t const in1_sf = 1;
+    uint64_t const in1_sb = in1_sf * df;
+    uint64_t const in1_se = in1_sb * db;
+    uint64_t const in1_sd = 0;
+    uint64_t const in1_sc = 0;
+    uint64_t const in1_sa = 0;
+
+    uint64_t const out_sd = 1;
+    uint64_t const out_sc = out_sd * dd;
+    uint64_t const out_sf = out_sc * dc;
+    uint64_t const out_se = out_sf * df;
+    uint64_t const out_sa = out_se * de;
+    uint64_t const out_sb = 0;
+
+    for (uint64_t xa = 0; xa < da; ++xa) {
+        for (uint64_t xc = 0; xc < dc; ++xc) {
+            for (uint64_t xe = 0; xe < de; ++xe) {
+                float const* in0_ptr = in0 + xa * in0_sa + xc * in0_sc + xe * in0_se;
+                float const* in1_ptr = in1 + xa * in1_sa + xc * in1_sc + xe * in1_se;
+                float* out_ptr = out + xa * out_sa + xc * out_sc + xe * out_se;
+
+                zero_4_256_96(out_ptr);
+                gemm_4_256_64_96_256_96(in0_ptr, in1_ptr, out_ptr);
+            }
+        }
+    }
+}
 
 
 

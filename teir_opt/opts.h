@@ -8,6 +8,7 @@ extern uint64_t const out_size;
 extern uint64_t const flops;
 
 void abcd_ebf_aefcd_v1(float const* in0, float const* in1, float* out);
+void abcd_ebf_aefcd_v1_lowered(float const* in0, float const* in1, float* out);
 void abcd_ebf_aefcd_v2(float const* in0, float const* in1, float* out);
 void abcd_ebf_aefcd_v2_parallel(float const* in0, float const* in1, float* out);
 void abcd_ebf_aefcd_v2_reordered(float const* in0, float const* in1, float* out);

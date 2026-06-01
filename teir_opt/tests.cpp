@@ -68,6 +68,10 @@ TEST_CASE( "test04", "[test]" ) {
     test_op_func(&abcd_ebf_aefcd_v4);
 }
 
+TEST_CASE( "test05", "[test]" ) {
+    test_op_func(&abcd_ebf_aefcd_v1_lowered);
+}
+
 
 
 int main(int argc, char* argv[]) {

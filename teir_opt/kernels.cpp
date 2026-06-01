@@ -24,7 +24,10 @@ void zerofunction::operator()(float* out) {
 }
 
 
-
+static zerofunction _zero_4_256_96;
+void zero_4_256_96(float* out) {
+    _zero_4_256_96(out);
+}
 
 static zerofunction _zero_32_64_96;
 void zero_32_64_96(float* out) {
@@ -46,11 +49,18 @@ void gemm_96_256_64_96_256_96(float const* in0, float const* in1, float* out) {
     _gemm_96_256_64_96_256_96(in0, in1, out);
 }
 
+static libxsmm_mmfunction<float> _gemm_4_256_64_96_256_96;
+void gemm_4_256_64_96_256_96(float const* in0, float const* in1, float* out) {
+    _gemm_4_256_64_96_256_96(in0, in1, out);
+}
+
 
 void generate_kernels() {
+    _gemm_4_256_64_96_256_96 = libxsmm_mmfunction<float>(LIBXSMM_GEMM_FLAG_TRANS_B, 4, 256, 64, 96, 256, 96, 1.0, 1.0);
     _gemm_32_64_64_96_256_96 = libxsmm_mmfunction<float>(LIBXSMM_GEMM_FLAG_TRANS_B, 32, 64, 64, 96, 256, 96, 1.0, 1.0);
     _gemm_96_256_64_96_256_96 = libxsmm_mmfunction<float>(LIBXSMM_GEMM_FLAG_TRANS_B, 96, 256, 64, 96, 256, 96, 1.0, 1.0);
     
+    _zero_4_256_96 = zerofunction(4, 256, 96);
     _zero_32_64_96 = zerofunction(32, 64, 96);
     _zero_96_256_96 = zerofunction(96, 256, 96);
 }

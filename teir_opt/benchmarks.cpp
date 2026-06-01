@@ -1,4 +1,5 @@
 #include <iostream>
+#include <omp.h>
 
 #include "opts.h"
 #include "kernels.h"
@@ -49,10 +50,10 @@ void benchmark_operation(op_func_t* op, uint64_t const reps) {
 int main() {
     generate_kernels();
 
-    uint64_t reps = 100;
-
+    std::cout << "Max Threads: " << omp_get_max_threads() << std::endl;
     std::cout << "GFlops\t\tDuration [s]\t\t" << std::endl;
     benchmark_operation(&abcd_ebf_aefcd_v1, 10);
+    benchmark_operation(&abcd_ebf_aefcd_v1_lowered, 1000);
     benchmark_operation(&abcd_ebf_aefcd_v2, 10000);
     benchmark_operation(&abcd_ebf_aefcd_v2_parallel, 10000);
     benchmark_operation(&abcd_ebf_aefcd_v2_reordered, 10000);
