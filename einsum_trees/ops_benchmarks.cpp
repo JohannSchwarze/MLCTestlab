@@ -120,13 +120,13 @@ int main() {
     generate_kernels();
 
     std::cout << "GiBs\t\tBytes transferred [GiB]\t\tDuration [s]\t\tAverage time per rep [s]" <<  std::endl;
-    benchmark_opv2_bacd_cdab(250);
+    benchmark_opv2_bacd_cdab(1000);
 
     std::cout << std::endl;
     std::cout << "GFlops\t\tFlops computed [GFlops]\t\tDuration [s]\t\tAverage time per rep [s]" << std::endl;
-    benchmark_opv2_cdab_cdef_efab(5);
-    benchmark_opv2_efgh_efab_gabh(5);
-    benchmark_opv2(5);
+    benchmark_opv2_cdab_cdef_efab(15);
+    benchmark_opv2_efgh_efab_gabh(15);
+    benchmark_opv2(10);
 
     return 0;
 }
