@@ -26,6 +26,9 @@ float max_abs_diff(float const* in0, float const* in1, uint64_t const size) {
 
 void load_tensor(float* out, uint64_t size, const char* fp) {
     std::ifstream file(fp, std::ios::binary);
+    if (!file.is_open()) {
+        throw "Failed to open file \"" + std::string(fp) + "\"";
+    }
     file.read((char*) out, size * sizeof(float));
 }
 
