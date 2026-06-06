@@ -43,3 +43,12 @@ target_link_libraries(ops_tests.out PRIVATE Catch2::Catch2 xsmm omp)
 target_compile_options(ops_tests.out PRIVATE ${CXX_FLAGS})
 
 
+add_executable(ops_benchmarks.out 
+    ops_benchmarks.cpp 
+    ops.cpp
+    kernels.cpp
+)
+target_include_directories(ops_benchmarks.out PRIVATE libxsmm/include /opt/homebrew/opt/libomp/include)
+target_link_directories(ops_benchmarks.out PRIVATE /opt/homebrew/opt/libomp/lib libxsmm/lib)
+target_link_libraries(ops_benchmarks.out PRIVATE Catch2::Catch2 xsmm omp)
+target_compile_options(ops_benchmarks.out PRIVATE ${CXX_FLAGS})

@@ -18,10 +18,6 @@ extern const uint64_t dh;
 
 
 
-
-
-
-
 void opv2_bacd_cdab(const float* in0, float* out);
 void opv2_cdab_cdef_efab(const float* in0, const float* in1, float* out);
 void opv2_efgh_efab_gabh(const float* in0, const float* in1, float* out);
