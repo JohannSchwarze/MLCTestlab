@@ -22,7 +22,7 @@ FetchContent_MakeAvailable(Catch2)
 
 
 
-set(CXX_FLAGS -Wall -Wextra -march=armv9.2-a+nosve+sme+sme2 -O3)
+set(CXX_FLAGS -Wall -Wextra -march=armv9.2-a+nosve+sme+sme2 -O0)
 
 
 
@@ -43,14 +43,3 @@ target_link_libraries(ops_tests.out PRIVATE Catch2::Catch2 xsmm omp)
 target_compile_options(ops_tests.out PRIVATE ${CXX_FLAGS})
 
 
-
-
-
-add_library(ops SHARED
-    ops.cpp
-    kernels.cpp
-)
-target_include_directories(ops PRIVATE libxsmm/include /opt/homebrew/opt/libomp/include)
-target_link_directories(ops PRIVATE /opt/homebrew/opt/libomp/lib libxsmm/lib)
-target_link_libraries(ops PRIVATE Catch2::Catch2 xsmm omp)
-target_compile_options(ops PRIVATE ${CXX_FLAGS})

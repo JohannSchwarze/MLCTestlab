@@ -34,28 +34,6 @@ void load_tensor(float* out, uint64_t size, const char* fp) {
 
 
 
-TEST_CASE("test v1", "[test]") {
-    /*
-    std::vector<float> bacd(db * da * dc * dd, 0.0f);
-    std::vector<float> cdef(dc * dd * de * df, 0.0f);
-    std::vector<float> abef(da * db * de * df, 0.0f);
-    std::vector<float> efgh(de * df * dg * dh, 0.0f);
-    std::vector<float> gabh(dg * da * db * dh, 0.0f);
-    std::vector<float> gabh_exp(dg * da * db * dh, 0.0f);
-
-    load_tensor(bacd.data(), bacd.size(), "data/bacd.bin");
-    load_tensor(cdef.data(), cdef.size(), "data/cdef.bin");
-    load_tensor(efgh.data(), efgh.size(), "data/efgh.bin");
-    load_tensor(gabh_exp.data(), gabh_exp.size(), "data/gabh.bin");
-
-    opv1_bacd_cdef_abef(bacd.data(), cdef.data(), abef.data());
-    opv1_abef_efgh_gabh(abef.data(), efgh.data(), gabh.data());
-
-    float diff = max_abs_diff(gabh.data(), gabh_exp.data(), gabh.size());
-    REQUIRE(diff < 1e-5);
-    */
-}
-
 
 TEST_CASE("test transpose", "[test]") {
     transposefunction func(3, 3, 3, 3);
